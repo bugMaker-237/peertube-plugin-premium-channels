@@ -1,0 +1,18 @@
+{
+	"Subscribers only": "Abonnes uniquement",
+	"Disable downloads": "Desactiver les telechargements",
+	"Limit playback to subscribers of this channel.": "Limiter la lecture aux abonnes de cette chaine.",
+	"Prevent all users from downloading this video.": "Empecher tous les utilisateurs de telecharger cette video.",
+	"This video is restricted to channel subscribers.": "Cette video est reservee aux abonnes de la chaine.",
+	"Close": "Fermer",
+	"Remove subscribe button": "Supprimer le bouton d'abonnement",
+	"Remove the subscribe button on video and channel pages.": "Supprimer le bouton d'abonnement sur les pages de video et de chaine.",
+	"Default: Subscribers only": "Defaut : Abonnes uniquement",
+	"Default value for \"Subscribers only\" on video upload/creation.": "Valeur par defaut pour \"Abonnes uniquement\" lors de l'envoi ou creation de video.",
+	"Default: Deny downloads": "Defaut : Interdire les telechargements",
+	"Default value for \"Deny downloads\" on video upload/creation.": "Valeur par defaut pour \"Interdire les telechargements\" lors de l'envoi ou creation de video.",
+	"Global: Subscribers only": "Global : Abonnes uniquement",
+	"Force all videos to be subscribers-only (overrides per-video setting).": "Forcer toutes les videos a etre reservees aux abonnes (remplace le reglage par video).",
+	"Global: Deny downloads": "Global : Interdire les telechargements",
+	"Force downloads to be disabled for all videos (overrides per-video setting).": "Forcer la desactivation des telechargements pour toutes les videos (remplace le reglage par video)."
+}

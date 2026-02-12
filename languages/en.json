@@ -1,0 +1,18 @@
+{
+	"Subscribers only": "Subscribers only",
+	"Disable downloads": "Disable downloads",
+	"Limit playback to subscribers of this channel.": "Limit playback to subscribers of this channel.",
+	"Prevent all users from downloading this video.": "Prevent all users from downloading this video.",
+	"This video is restricted to channel subscribers.": "This video is restricted to channel subscribers.",
+	"Close": "Close",
+	"Remove subscribe button": "Remove subscribe button",
+	"Remove the subscribe button on video and channel pages.": "Remove the subscribe button on video and channel pages.",
+	"Default: Subscribers only": "Default: Subscribers only",
+	"Default value for \"Subscribers only\" on video upload/creation.": "Default value for \"Subscribers only\" on video upload/creation.",
+	"Default: Deny downloads": "Default: Deny downloads",
+	"Default value for \"Deny downloads\" on video upload/creation.": "Default value for \"Deny downloads\" on video upload/creation.",
+	"Global: Subscribers only": "Global: Subscribers only",
+	"Force all videos to be subscribers-only (overrides per-video setting).": "Force all videos to be subscribers-only (overrides per-video setting).",
+	"Global: Deny downloads": "Global: Deny downloads",
+	"Force downloads to be disabled for all videos (overrides per-video setting).": "Force downloads to be disabled for all videos (overrides per-video setting)."
+}

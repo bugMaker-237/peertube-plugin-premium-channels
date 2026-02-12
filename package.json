@@ -1,0 +1,41 @@
+{
+	"name": "peertube-plugin-premium-channels",
+	"description": "PeerTube plugin premium channels",
+	"version": "1.0.0",
+	"author": "bugmaker237",
+	"bugs": "https://github.com/bugmaker237/peertube-plugin-premium-channels/issues",
+	"clientScripts": [
+		{
+			"script": "dist/common-client-plugin.js",
+			"scopes": [
+				"common"
+			]
+		}
+	],
+	"css": [
+		"assets/style.css"
+	],
+	"engine": {
+		"peertube": ">=5.0.0"
+	},
+	"homepage": "https://github.com/bugmaker237/peertube-plugin-premium-channels",
+	"keywords": [
+		"peertube",
+		"plugin"
+	],
+	"library": "./main.js",
+	"scripts": {
+		"prepare": "npm run build",
+		"build": "node ./scripts/build.js"
+	},
+	"staticDirs": {
+		"images": "public/images"
+	},
+	"translations": {
+		"fr-FR": "./languages/fr.json"
+	},
+	"devDependencies": {
+		"@peertube/peertube-types": "^8.0.2",
+		"esbuild": "^0.14.36"
+	}
+}
