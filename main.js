@@ -165,7 +165,7 @@ async function isVideoOwner(peertubeHelpers, userId, videoId) {
 		`SELECT COUNT(*) as count
      FROM video v
      JOIN "videoChannel" vc ON v."channelId" = vc.id
-     JOIN account a ON vc."accountId" = a.id
+     JOIN account a ON vc."accountId" = a."userId"
      WHERE v.id = ${Number(videoId)} AND a."userId" = ${Number(userId)}`
 	);
 
@@ -198,11 +198,6 @@ async function canAccessVideo(
 	video,
 	globalSubscriberOnly
 ) {
-	const subscriberOnly = globalSubscriberOnly
-		? true
-		: Boolean(video.pluginData?.[VIDEO_FIELD_SUBSCRIBER_ONLY]);
-
-	if (!subscriberOnly) return true;
 	if (!userId) return false;
 
 	if (await isRootAdmin(peertubeHelpers, userId)) return true;
@@ -213,6 +208,12 @@ async function canAccessVideo(
 	if (!videoId || !channelId) return false;
 
 	if (await isVideoOwner(peertubeHelpers, userId, videoId)) return true;
+
+	const subscriberOnly = globalSubscriberOnly
+		? true
+		: Boolean(video.pluginData?.[VIDEO_FIELD_SUBSCRIBER_ONLY]);
+
+	if (!subscriberOnly) return true;
 
 	const followedChannelIds = await getFollowedChannelIds(
 		peertubeHelpers,
@@ -341,7 +342,20 @@ async function register({
 
 		const userId = params?.user?.id;
 
-		if (userId && (await isRootAdmin(peertubeHelpers, userId))) {
+		if (userId) {
+			if (await isRootAdmin(peertubeHelpers, userId)) return result;
+
+			const filtered = [];
+
+			for (const video of result.data) {
+				const videoId = getVideoId(video);
+				if (videoId && (await isVideoOwner(peertubeHelpers, userId, videoId))) {
+					filtered.push(video);
+				}
+			}
+
+			result.data = filtered;
+			result.total = result.data.length;
 			return result;
 		}
 
@@ -538,7 +552,6 @@ async function register({
 	registerHook({
 		target: 'action:api.video.updated',
 		handler: async (/** @type {{ video?: any, body?: any }} */ params) => {
-			if (globalSubscriberOnly || globalDenyDownload) return;
 			const flags = getFlagsFromBody(params?.body);
 			if (!flags || !params?.video) return;
 
