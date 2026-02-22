@@ -102,7 +102,12 @@ async function storeFlags(storageManager, video, flags) {
  * @returns {number | undefined}
  */
 function getChannelId(video) {
-	return video?.channel?.id ?? video?.channelId ?? video?.videoChannel?.id;
+	return (
+		video?.Video?.VideoChannel?.id ??
+		video?.channel?.id ??
+		video?.channelId ??
+		video?.videoChannel?.id
+	);
 }
 
 /**
@@ -348,8 +353,14 @@ async function register({
 			const filtered = [];
 
 			for (const video of result.data) {
-				const videoId = getVideoId(video);
-				if (videoId && (await isVideoOwner(peertubeHelpers, userId, videoId))) {
+				const canAccessVideoValue = await canAccessVideo(
+					peertubeHelpers,
+					userId,
+					video,
+					globalSubscriberOnly
+				);
+
+				if (canAccessVideoValue) {
 					filtered.push(video);
 				}
 			}
